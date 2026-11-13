@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#18251d">
+  <title>AURORA — горный эко-отель</title>
+  <meta
+    name="description"
+    content="AURORA — эко-отель в горах. Уютные шале, панорамные виды и отдых на природе."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --forest: #18251d;
+      --forest-light: #26382a;
+      --cream: #f4f0e8;
+      --paper: #fffdf8;
+      --olive: #87936d;
+      --sage: #dce2d0;
+      --gold: #d8bd83;
+      --ink: #232920;
+      --muted: #767b70;
+      --line: rgba(35, 41, 32, 0.13);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+    }
+
+    body,
+    button,
+    input,
+    select {
+      font-family: var(--sans);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font-size: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 5;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      color: white;
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.68);
+      border-radius: 50%;
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 12px;
+    }
+
+    .nav-links a {
+      transition: color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-button,
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 21px;
+      border: 1px solid transparent;
+      background: var(--forest);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .nav-button {
+      min-height: 41px;
+      border-color: rgba(255, 255, 255, 0.5);
+      background: transparent;
+    }
+
+    .nav-button:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .button:hover {
+      background: #314735;
+      transform: translateY(-2px);
+    }
+
+    .button-light {
+      border-color: rgba(255, 255, 255, 0.54);
+      background: transparent;
+    }
+
+    .button-light:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero {
+      min-height: 760px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(13, 23, 17, 0.74), rgba(13, 23, 17, 0.29) 62%, rgba(13, 23, 17, 0.18)),
+        linear-gradient(0deg, rgba(13, 23, 17, 0.35), transparent 55%),
+        url("https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2200&q=90")
+          center 52% / cover;
+      color: white;
+    }
+
+    .hero::after {
+      position: absolute;
+      right: 7%;
+      bottom: 12%;
+      width: 190px;
+      height: 190px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 50%;
+      content: "";
+      animation: rotate 26s linear infinite;
+    }
+
+    .hero::before {
+      position: absolute;
+      right: calc(7% + 85px);
+      bottom: calc(12% + 85px);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 45px rgba(216, 189, 131, 0.6);
+      content: "";
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 95px;
+      animation: appear 900ms ease both;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 23px;
+      font-family: var(--serif);
+      font-size: clamp(58px, 9vw, 112px);
+      font-weight: 500;
+      letter-spacing: -4px;
+      line-height: 0.98;
+    }
+
+    h1 em {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .hero-copy {
+      max-width: 480px;
+      margin-bottom: 32px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-caption {
+      position: absolute;
+      right: 24px;
+      bottom: 28px;
+      color: rgba(255, 255, 255, 0.73);
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-note {
+      position: absolute;
+      bottom: 30px;
+      left: 24px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 44px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    section {
+      padding: 110px 0;
+      scroll-margin-top: 25px;
+    }
+
+    .section-label {
+      margin-bottom: 15px;
+      color: var(--olive);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-family: var(--serif);
+      font-size: clamp(38px, 5.5vw, 65px);
+      font-weight: 500;
+      letter-spacing: -1.6px;
+      line-height: 1.08;
+    }
+
+    .section-copy {
+      max-width: 570px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .intro {
+      background: var(--paper);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.88fr;
+      align-items: center;
+      gap: 84px;
+    }
+
+    .intro-photo {
+      position: relative;
+      min-height: 490px;
+      background:
+        linear-gradient(0deg, rgba(10, 18, 12, 0.12), transparent 48%),
+        url("https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1100&q=85")
+          center / cover;
+    }
+
+    .intro-photo::after {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--gold);
+      content: "";
+      pointer-events: none;
+    }
+
+    .intro-note {
+      position: absolute;
+      right: -20px;
+      bottom: 25px;
+      z-index: 1;
+      max-width: 185px;
+      padding: 17px;
+      background: var(--forest);
+      color: white;
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    .intro-note span {
+      display: block;
+      margin-top: 8px;
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .intro-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+      margin-top: 32px;
+    }
+
+    .intro-point {
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+      color: #51594f;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .intro-point strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--forest);
+      font-family: var(--serif);
+      font-size: 23px;
+      font-weight: 500;
+    }
+
+    .rooms {
+      background: var(--cream);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 42px;
+    }
+
+    .section-head .section-copy {
+      max-width: 410px;
+    }
+
+    .room-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .room-card {
+      overflow: hidden;
+      background: var(--paper);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .room-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 45px rgba(35, 41, 32, 0.12);
+    }
+
+    .room-image {
+      height: 260px;
+      background-position: center;
+      background-size: cover;
+      transition: transform 500ms ease;
+    }
+
+    .room-card:hover .room-image {
+      transform: scale(1.035);
+    }
+
+    .room-photo-one {
+      background-image: url("https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=900&q=85");
+    }
+
+    .room-photo-two {
+      background-image: url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85");
+    }
+
+    .room-photo-three {
+      background-image: url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85");
+    }
+
+    .room-body {
+      padding: 23px;
+    }
+
+    .room-category {
+      margin-bottom: 10px;
+      color: var(--olive);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .room-body h3 {
+      margin-bottom: 9px;
+      font-family: var(--serif);
+      font-size: 25px;
+      font-weight: 500;
+    }
+
+    .room-body p {
+      min-height: 48px;
+      margin-bottom: 17px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .room-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .room-price {
+      color: var(--forest);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .experiences {
+      position: relative;
+      overflow: hidden;
+      background: var(--forest);
+      color: white;
+    }
+
+    .experiences::before {
+      position: absolute;
+      top: -240px;
+      right: -180px;
+      width: 580px;
+      height: 580px;
+      border: 1px solid rgba(216, 189, 131, 0.18);
+      border-radius: 50%;
+      box-shadow: 0 0 0 70px rgba(216, 189, 131, 0.025), 0 0 0 145px rgba(216, 189, 131, 0.02);
+      content: "";
+    }
+
+    .experiences .section-label {
+      color: var(--gold);
+    }
+
+    .experiences .section-copy {
+      color: rgba(255, 255, 255, 0.61);
+    }
+
+    .experience-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 48px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .experience-card {
+      min-height: 205px;
+      padding: 25px 21px;
+      background: var(--forest);
+      transition: background 180ms ease;
+    }
+
+    .experience-card:hover {
+      background: var(--forest-light);
+    }
+
+    .experience-icon {
+      margin-bottom: 25px;
+      color: var(--gold);
+      font-size: 25px;
+    }
+
+    .experience-card h3 {
+      margin-bottom: 9px;
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 500;
+    }
+
+    .experience-card p {
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .gallery {
+      background: var(--paper);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr 0.85fr;
+      grid-template-rows: 245px 245px;
+      gap: 13px;
+      margin-top: 38px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .gallery-item::after {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(16, 26, 18, 0.35), transparent 55%);
+      content: "";
+      transition: background 180ms ease;
+    }
+
+    .gallery-item:hover::after {
+      background: rgba(16, 26, 18, 0.1);
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-one {
+      background-image: url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=85");
+    }
+
+    .gallery-two {
+      background-image: url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=85");
+    }
+
+    .gallery-three {
+      background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85");
+    }
+
+    .gallery-four {
+      background-image: url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=85");
+    }
+
+    .gallery-five {
+      background-image: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=85");
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      z-index: 1;
+      color: white;
+      font-family: var(--serif);
+      font-size: 18px;
+    }
+
+    .booking {
+      background: var(--sage);
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .booking-aside {
+      padding: 35px 0;
+    }
+
+    .booking-aside h2 {
+      max-width: 430px;
+    }
+
+    .booking-aside .section-copy {
+      margin-bottom: 28px;
+    }
+
+    .booking-detail {
+      padding-top: 17px;
+      border-top: 1px solid rgba(35, 41, 32, 0.2);
+      color: #626a5c;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .booking-form {
+      padding: 34px;
+      background: var(--paper);
+      box-shadow: 0 22px 70px rgba(35, 41, 32, 0.08);
+    }
+
+    .booking-form h3 {
+      margin-bottom: 8px;
+      font-family: var(--serif);
+      font-size: 29px;
+      font-weight: 500;
+    }
+
+    .form-intro {
+      margin-bottom: 25px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #52594e;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 47px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      outline: none;
+      background: white;
+      color: var(--ink);
+      font-size: 11px;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--olive);
+    }
+
+    .field select option {
+      background: white;
+      color: var(--ink);
+    }
+
+    .booking-form .button {
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    .form-note {
+      margin: 11px 0 0;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .location {
+      background: var(--paper);
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .location-info p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .location-line {
+      margin-top: 21px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: #50584c;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    .map {
+      position: relative;
+      min-height: 330px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(35deg, transparent 46%, rgba(255, 255, 255, 0.24) 47%, rgba(255, 255, 255, 0.24) 49%, transparent 50%),
+        linear-gradient(130deg, transparent 43%, rgba(255, 255, 255, 0.23) 44%, rgba(255, 255, 255, 0.23) 46%, transparent 47%),
+        linear-gradient(90deg, rgba(24, 37, 29, 0.12) 1px, transparent 1px),
+        linear-gradient(rgba(24, 37, 29, 0.12) 1px, transparent 1px),
+        #e3e8dd;
+      background-size: auto, auto, 48px 48px, 48px 48px, auto;
+    }
+
+    .map::before,
+    .map::after {
+      position: absolute;
+      width: 180px;
+      height: 75px;
+      border-radius: 50%;
+      background: rgba(135, 147, 109, 0.18);
+      content: "";
+      transform: rotate(-28deg);
+    }
+
+    .map::before {
+      top: 35px;
+      left: -35px;
+    }
+
+    .map::after {
+      right: -32px;
+      bottom: 25px;
+      transform: rotate(28deg);
+    }
+
+    .map-pin {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+      gap: 9px;
+      color: var(--forest);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .pin-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(24, 37, 29, 0.2);
+      border-radius: 50%;
+      background: var(--forest);
+      box-shadow: 0 0 0 10px rgba(24, 37, 29, 0.1);
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    footer {
+      padding: 30px 0;
+      background: var(--forest);
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 10px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-inner .logo {
+      color: white;
+      font-size: 19px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 10;
+      max-width: min(380px, calc(100% - 40px));
+      padding: 16px 19px;
+      background: var(--forest);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+      color: white;
+      font-size: 11px;
+      line-height: 1.6;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 650ms ease, transform 650ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .intro-grid,
+      .booking-grid,
+      .location-grid {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .intro-photo {
+        min-height: 420px;
+      }
+
+      .room-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .experience-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-rows: 210px 210px;
+      }
+
+      .booking-aside {
+        padding-bottom: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 30px, 1200px);
+      }
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .nav-button {
+        min-height: 37px;
+        padding: 0 11px;
+        font-size: 9px;
+      }
+
+      .hero {
+        min-height: 680px;
+        background-position: 57% center;
+      }
+
+      .hero-content {
+        padding-top: 72px;
+      }
+
+      h1 {
+        font-size: clamp(55px, 16vw, 82px);
+        letter-spacing: -2px;
+      }
+
+      .hero-copy {
+        font-size: 13px;
+      }
+
+      .hero::after,
+      .hero::before,
+      .hero-caption {
+        display: none;
+      }
+
+      .scroll-note {
+        bottom: 22px;
+        left: 15px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .intro-grid {
+        gap: 35px;
+      }
+
+      .intro-photo {
+        min-height: 330px;
+      }
+
+      .intro-photo::after {
+        top: 13px;
+        left: 13px;
+      }
+
+      .intro-note {
+        right: -8px;
+        bottom: 15px;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .room-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .room-image {
+        height: 245px;
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .experience-card {
+        min-height: 190px;
+        padding: 19px 14px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 230px 150px 150px;
+        gap: 8px;
+      }
+
+      .gallery-item:first-child {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+
+      .gallery-caption {
+        bottom: 11px;
+        left: 11px;
+        font-size: 15px;
+      }
+
+      .booking-grid {
+        gap: 25px;
+      }
+
+      .booking-form {
+        padding: 22px 17px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .map {
+        min-height: 260px;
+      }
+
+      .footer-inner {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="AURORA — главная">
+        <span class="logo-mark">A</span>
+        <span>AURORA</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Основная навигация">
+        <a href="#about">О месте</a>
+        <a href="#rooms">Проживание</a>
+        <a href="#experiences">Впечатления</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <a class="nav-button" href="#booking">Забронировать ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="eyebrow">Горный эко-отель · Кавказ</div>
+        <h1>Место, где<br>начинается <em>тишина.</em></h1>
+        <p class="hero-copy">
+          Просыпайтесь с видом на горы, дышите чистым воздухом и возвращайтесь
+          к простым вещам, которые действительно важны.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#booking">Выбрать даты <span>↗</span></a>
+          <a class="button button-light" href="#about">Исследовать место</a>
+        </div>
+      </div>
+
+      <div class="scroll-note"><span class="scroll-line"></span> Листайте, чтобы узнать больше</div>
+      <div class="hero-caption">44° северной широты · высоко над привычным</div>
+    </section>
+
+    <section class="intro" id="about">
+      <div class="container intro-grid">
+        <div class="intro-photo reveal">
+          <div class="intro-note">
+            «Здесь время наконец-то замедляется»
+            <span>Гости AURORA</span>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="section-label">О месте</div>
+          <h2>Ближе к природе.<br>Ближе к себе.</h2>
+          <p class="section-copy">
+            AURORA — камерный горный отель для тех, кто хочет сменить городской
+            шум на шелест леса. Мы создали пространство, где природные материалы,
+            тёплый свет и большие окна помогают почувствовать себя частью пейзажа.
+          </p>
+          <p class="section-copy">
+            Днём — горные маршруты и свежий воздух. Вечером — уютное шале,
+            неспешный ужин и небо, в котором видны звёзды.
+          </p>
+
+          <div class="intro-points">
+            <div class="intro-point"><strong>1 240 м</strong>над уровнем моря</div>
+            <div class="intro-point"><strong>12 шале</strong>вдали от суеты</div>
+            <div class="intro-point"><strong>365 дней</strong>новых впечатлений</div>
+            <div class="intro-point"><strong>4 сезона</strong>для отдыха в горах</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rooms" id="rooms">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-label">Проживание</div>
+            <h2>Ваше место в горах</h2>
+          </div>
+          <p class="section-copy">
+            Натуральное дерево, большие окна и спокойные детали. Выберите шале,
+            которое подходит именно вашему путешествию.
+          </p>
+        </div>
+
+        <div class="room-grid">
+          <article class="room-card reveal">
+            <div class="room-image room-photo-one"></div>
+            <div class="room-body">
+              <div class="room-category">Для двоих · 42 м²</div>
+              <h3>Лесное шале</h3>
+              <p>Тёплый интерьер, приватная терраса и вид на еловый склон.</p>
+              <div class="room-meta">
+                <span>Завтрак включён</span>
+                <span class="room-price">от 12 900 ₽ / ночь</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="room-card reveal">
+            <div class="room-image room-photo-two"></div>
+            <div class="room-body">
+              <div class="room-category">Для семьи · 68 м²</div>
+              <h3>Панорамное шале</h3>
+              <p>Две спальни, панорамные окна и собственная гостиная.</p>
+              <div class="room-meta">
+                <span>До 4 гостей</span>
+                <span class="room-price">от 18 500 ₽ / ночь</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="room-card reveal">
+            <div class="room-image room-photo-three"></div>
+            <div class="room-body">
+              <div class="room-category">Особенное · 55 м²</div>
+              <h3>Шале «Рассвет»</h3>
+              <p>Уединённая терраса, камин и первые лучи солнца прямо в комнате.</p>
+              <div class="room-meta">
+                <span>Камин и терраса</span>
+                <span class="room-price">от 16 900 ₽ / ночь</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="experiences" id="experiences">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-label">Впечатления</div>
+            <h2>Почувствуйте горы</h2>
+          </div>
+          <p class="section-copy">
+            Можно заполнить каждый день приключениями — или просто оставить его
+            свободным. Здесь оба варианта правильные.
+          </p>
+        </div>
+
+        <div class="experience-grid">
+          <article class="experience-card reveal">
+            <div class="experience-icon">⌁</div>
+            <h3>Тропы и прогулки</h3>
+            <p>Маршруты для неспешных прогулок и небольших горных походов.</p>
+          </article>
+          <article class="experience-card reveal">
+            <div class="experience-icon">☼</div>
+            <h3>Тихие рассветы</h3>
+            <p>Кофе на террасе и золотой свет, который медленно наполняет долину.</p>
+          </article>
+          <article class="experience-card reveal">
+            <div class="experience-icon">✳</div>
+            <h3>Тёплая баня</h3>
+            <p>Время согреться, отдохнуть и восстановить силы после прогулки.</p>
+          </article>
+          <article class="experience-card reveal">
+            <div class="experience-icon">✦</div>
+            <h3>Ужин у камина</h3>
+            <p>Сезонные блюда из локальных продуктов и долгие вечера без спешки.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-label">Фотографии</div>
+            <h2>Атмосфера AURORA</h2>
+          </div>
+          <p class="section-copy">
+            Чуть больше леса, воздуха и света. Фотографии на этой странице
+            загружаются из интернета.
+          </p>
+        </div>
+
+        <div class="gallery-grid reveal">
+          <div class="gallery-item gallery-one">
+            <span class="gallery-caption">Дорога домой</span>
+          </div>
+          <div class="gallery-item gallery-two">
+            <span class="gallery-caption">Лес вокруг</span>
+          </div>
+          <div class="gallery-item gallery-three">
+            <span class="gallery-caption">Свежий воздух</span>
+          </div>
+          <div class="gallery-item gallery-four">
+            <span class="gallery-caption">Тишина</span>
+          </div>
+          <div class="gallery-item gallery-five">
+            <span class="gallery-caption">Виды с высоты</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="booking">
+      <div class="container booking-grid">
+        <div class="booking-aside reveal">
+          <div class="section-label">Планируйте отдых</div>
+          <h2>Пусть горы подождут вас.</h2>
+          <p class="section-copy">
+            Оставьте заявку — макет покажет подтверждение прямо на странице.
+            Для реальных бронирований потребуется подключить отправку данных.
+          </p>
+          <div class="booking-detail">
+            Заезд с 15:00 · Выезд до 12:00<br>
+            Минимальный срок проживания может зависеть от сезона.<br>
+            Указанные на сайте цены демонстрационные.
+          </div>
+        </div>
+
+        <form class="booking-form reveal" id="bookingForm">
+          <h3>Запросить бронирование</h3>
+          <p class="form-intro">
+            Заполните форму, чтобы увидеть, как будет выглядеть заявка на сайте.
+          </p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="guestName">Ваше имя</label>
+              <input id="guestName" name="name" type="text" placeholder="Например, Анна" required>
+            </div>
+
+            <div class="field">
+              <label for="guestPhone">Телефон</label>
+              <input id="guestPhone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required>
+            </div>
+
+            <div class="field">
+              <label for="arrival">Заезд</label>
+              <input id="arrival" name="arrival" type="date" required>
+            </div>
+
+            <div class="field">
+              <label for="departure">Выезд</label>
+              <input id="departure" name="departure" type="date" required>
+            </div>
+
+            <div class="field">
+              <label for="roomType">Вариант проживания</label>
+              <select id="roomType" name="room">
+                <option>Лесное шале</option>
+                <option>Панорамное шале</option>
+                <option>Шале «Рассвет»</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="guestCount">Количество гостей</label>
+              <select id="guestCount" name="guests">
+                <option>1 гость</option>
+                <option selected>2 гостя</option>
+                <option>3 гостя</option>
+                <option>4 гостя</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <button class="button" type="submit">Отправить демо-заявку ↗</button>
+            </div>
+          </div>
+
+          <p class="form-note">
+            Это демонстрационная форма: данные никуда не отправляются и не сохраняются.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <section class="location" id="contacts">
+      <div class="container location-grid">
+        <div class="location-info reveal">
+          <div class="section-label">Путь к отдыху</div>
+          <h2>Найдите своё тихое место</h2>
+          <p>
+            Расположение и контакты ниже придуманы для макета. Перед публикацией
+            замени их на реальные данные выбранного отеля.
+          </p>
+          <div class="location-line">
+            Демонстрационный адрес: Республика Адыгея, горное плато Лаго-Наки<br>
+            Телефон: +7 (900) 000-00-00<br>
+            Почта: hello@aurora-hotel.example<br>
+            По предварительному запросу поможем организовать трансфер.
+          </div>
+        </div>
+
+        <div class="map reveal" role="img" aria-label="Схематичная карта расположения отеля">
+          <div class="map-pin">
+            <span class="pin-icon">⌖</span>
+            <span>AURORA · горный эко-отель</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="logo" href="#home">
+        <span class="logo-mark">A</span>
+        <span>AURORA</span>
+      </a>
+      <span>© 2026 AURORA · Демонстрационный сайт</span>
+      <div class="footer-links">
+        <a href="#about">О месте</a>
+        <a href="#rooms">Шале</a>
+        <a href="#booking">Бронирование</a>
+        <a href="#home">Наверх ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const form = document.querySelector("#bookingForm");
+    const toast = document.querySelector("#toast");
+    const arrivalInput = document.querySelector("#arrival");
+    const departureInput = document.querySelector("#departure");
+
+    let toastTimer;
+
+    const today = new Date();
+    const localToday = new Date(
+      today.getTime() - today.getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .slice(0, 10);
+
+    arrivalInput.min = localToday;
+    departureInput.min = localToday;
+
+    arrivalInput.addEventListener("change", () => {
+      departureInput.min = arrivalInput.value || localToday;
+
+      if (departureInput.value && departureInput.value < arrivalInput.value) {
+        departureInput.value = "";
+      }
+    });
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(toastTimer);
+
+      toastTimer = window.setTimeout(() => {
+        toast.classList.remove("show");
+      }, 5000);
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (departureInput.value <= arrivalInput.value) {
+        showToast("Дата выезда должна быть позже даты заезда.");
+        departureInput.focus();
+        return;
+      }
+
+      const formData = new FormData(form);
+      const name = formData.get("name");
+      const room = formData.get("room");
+
+      showToast(
+        `Спасибо, ${name}! Демо-заявка на «${room}» заполнена. Для реальной отправки нужен сервер.`
+      );
+    });
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
+  </script>
+</body>
+</html>
